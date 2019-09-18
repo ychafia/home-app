@@ -24,6 +24,23 @@ export class AuthService {
       sessionStorage.setItem('userData', JSON.stringify({user: postData.username, token: response.token}));
       return true;
     }));
+  }
 
+  public register(postData) {
+    return this.http.post<any>('http://localhost:9090/register', { username: postData.username, password:  postData.password})
+    .pipe(map(response => {
+      if(response && response.username) {
+        return true;
+      } else {
+        return false;
+      }
+    }));
+  }
+
+  public async logout() {
+    //loginAPI connexion
+    await sessionStorage.removeItem('userData');
+    await sessionStorage.clear();
+    return true;
   }
 }
