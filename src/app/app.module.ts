@@ -1,8 +1,14 @@
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
+import { HomeModule } from './home/home.module';
+import { RouterModule } from '@angular/router';
+import { IndexModule } from './index/index.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { routes } from './app.router';
 
 @NgModule({
   declarations: [
@@ -10,9 +16,13 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule,
+    IndexModule,
+    RouterModule.forRoot(routes, { useHash: false })
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService, AuthGuard],
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
