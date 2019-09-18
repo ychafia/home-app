@@ -1,1 +1,33 @@
-<p>home works!</p>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item">
+        <img src="assets/images/logo2.png" width="112" height="28">
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-end">
+        <a class="navbar-item " routerLink="/mescourses">
+            Mes courses
+        </a>
+        <a class="navbar-item " routerLink="/mesnotes">
+            Mes notes
+        </a>
+        <a class="navbar-item " routerLink="/monbudget">
+            Mon budget
+        </a>
+        <a class="navbar-item " (click)="logoutAction()" >
+            Logout
+        </a>
+        </div>
+    </div>
+    </nav>
+    
+    <div class="content">
+    <section class="section">
+        <div class="container mainBlock">
+        <p>
+            <router-outlet></router-outlet>
+        </p>
+        </div>
+    </section>
+</div>

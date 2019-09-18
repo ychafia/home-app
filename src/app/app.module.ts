@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { IndexModule } from './index/index.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { routes } from './app.router';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     HomeModule,
     IndexModule,
     RouterModule.forRoot(routes, { useHash: false })
