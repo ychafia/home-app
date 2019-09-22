@@ -1,0 +1,11 @@
+.zone-element {
+    margin: 10px;
+}
+
+.list-element {
+    border:1px dotted black;
+    border-radius: 10px;
+    background-color: rgb(171, 221, 159);
+    /* padding: 10px 0 10px 20px; */
+    margin: 10px;
+}

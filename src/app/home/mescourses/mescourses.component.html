@@ -1,1 +1,64 @@
-<p>mescourses works!</p>
+<div class="column">
+  <h1 class="title">Mes courses</h1>
+  <div class="field is-grouped is-grouped-centered">
+    <div class="control">
+      <div class="select is-primary">
+        <select>
+          <option>Zone 1</option>
+          <option>Zone 2</option>
+          <option>Zone 3</option>
+          <option>Zone 4</option>
+        </select>
+      </div>
+    </div>
+    <div class="control is-expanded">
+      <input class="input " type="text" placeholder="Saisir ici ...">
+    </div>
+  </div>
+  <div class="field is-grouped is-grouped-centered">
+    <div class="control">
+      <label class="checkbox">
+        <label class="switch">
+          <input type="checkbox" [checked]="checkedZones[0]" (click)="toggleZone(0)">
+          <span class="slider round"></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" [checked]="checkedZones[1]" (click)="toggleZone(1)">
+          <span class="slider round"></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" [checked]="checkedZones[2]" (click)="toggleZone(2)">
+          <span class="slider round"></span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" [checked]="checkedZones[3]" (click)="toggleZone(3)">
+          <span class="slider round"></span>
+        </label>
+      </label>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <div class="columns zone-element is-desktop">
+        <div class="column list-element" *ngIf="checkedZones[0]">
+            <li *ngFor="let item of elements | zone : 1">{{ item.libelle }}</li>
+        </div>
+        <div class="column list-element" *ngIf="checkedZones[1]">
+            <li *ngFor="let item of elements | zone : 2">{{ item.libelle }}</li>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <div class="columns zone-element is-desktop">
+        <div class="column list-element" *ngIf="checkedZones[2]">
+            <li *ngFor="let item of elements | zone : 3">{{ item.libelle }}</li>
+        </div>
+        <div class="column list-element" *ngIf="checkedZones[3]">
+            <li *ngFor="let item of elements | zone : 4">{{ item.libelle }}</li>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

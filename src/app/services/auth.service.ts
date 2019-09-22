@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   constructor(private http: HttpClient) { }
 
   public isAuthenticated(): boolean {
@@ -38,9 +38,12 @@ export class AuthService {
   }
 
   public async logout() {
-    //loginAPI connexion
     await sessionStorage.removeItem('userData');
     await sessionStorage.clear();
     return true;
+  }
+
+  public getToken() {
+    return JSON.parse(sessionStorage.getItem('userData'));
   }
 }
