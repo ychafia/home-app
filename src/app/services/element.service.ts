@@ -7,27 +7,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ElementService {
-  userData;
-  httpOptions = {
-    headers: new HttpHeaders({
-      
-    })
-  };
   
   constructor(private http: HttpClient) {
-    this.userData = JSON.parse(sessionStorage.getItem('userData'));
    }
 
   public getElement() : Observable<any> {
     return this.http.get<any>('http://localhost:9090/elementsapi/elements');
   }
 
-  public addElement() : Observable<any> {
-    let element = {
-      "libelle": "Sal3",
-      "salaire": 300,
-      "mois": "Janv-1"
-    }
-    return this.http.post<Element[]>('http://localhost:9090/elementsapi/elements', element);
+  public addElement(element) : Observable<any> {
+    return this.http.post<any>('http://localhost:9090/elementsapi/element', element);
+  }
+
+  public makeDone(element) {
+    return this.http.post<any>('http://localhost:9090/elementsapi/element', element);
+  }
+
+  public deleteElement(id) {
+    return this.http.delete<any>('http://localhost:9090/elementsapi/element/' + id);
   }
 }

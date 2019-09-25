@@ -1,19 +1,21 @@
 <div class="column">
   <h1 class="title">Mes courses</h1>
   <div class="field is-grouped is-grouped-centered">
-    <div class="control">
-      <div class="select is-primary">
-        <select>
-          <option>Zone 1</option>
-          <option>Zone 2</option>
-          <option>Zone 3</option>
-          <option>Zone 4</option>
-        </select>
+    <form class="field is-grouped" (ngSubmit)="addNewElement()" >
+      <div class="control">
+        <div class="select is-primary">
+          <select name="zone" [(ngModel)]="newElement.zone">
+            <option value="1">Zone 1</option>
+            <option value="2">Zone 2</option>
+            <option value="3">Zone 3</option>
+            <option value="4">Zone 4</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="control is-expanded">
-      <input class="input " type="text" placeholder="Saisir ici ...">
-    </div>
+      <div class="control is-expanded">
+        <input class="input" type="text" placeholder="Saisir ici ..." name="libelle" [(ngModel)]="newElement.libelle">
+      </div>
+    </form>
   </div>
   <div class="field is-grouped is-grouped-centered">
     <div class="control">
@@ -41,10 +43,10 @@
     <div class="control">
       <div class="columns zone-element is-desktop">
         <div class="column list-element" *ngIf="checkedZones[0]">
-            <li *ngFor="let item of elements | zone : 1">{{ item.libelle }}</li>
+          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="1" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
         </div>
         <div class="column list-element" *ngIf="checkedZones[1]">
-            <li *ngFor="let item of elements | zone : 2">{{ item.libelle }}</li>
+          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="2" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
         </div>
       </div>
     </div>
@@ -53,12 +55,17 @@
     <div class="control">
       <div class="columns zone-element is-desktop">
         <div class="column list-element" *ngIf="checkedZones[2]">
-            <li *ngFor="let item of elements | zone : 3">{{ item.libelle }}</li>
+          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="3" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
         </div>
         <div class="column list-element" *ngIf="checkedZones[3]">
-            <li *ngFor="let item of elements | zone : 4">{{ item.libelle }}</li>
+          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="4" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
         </div>
       </div>
     </div>
+  </div>
+  <div class="field">
+      <div class="field is-grouped is-grouped-centered">
+        <a class="button is-primary" (click)="deleteAll()">Terminer</a>
+      </div>
   </div>
 </div>

@@ -9,3 +9,11 @@
     /* padding: 10px 0 10px 20px; */
     margin: 10px;
 }
+
+li {
+    list-style-type: none;
+}
+
+.item {
+    margin-left: 10px; 
+}

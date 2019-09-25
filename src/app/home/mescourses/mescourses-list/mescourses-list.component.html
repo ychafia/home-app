@@ -1,0 +1,16 @@
+<table>
+  <tr *ngFor="let element of elements" >
+    <td *ngIf="element.zone == zone">
+      <label class="switch">
+          <input type="checkbox" [checked]="element.done" (click)="makeDoneElement(element)"/>
+          <span class="slider round"></span>
+      </label>
+    </td>
+    <td *ngIf="element.zone == zone">
+      <label>{{element.libelle}} </label>
+    </td>
+    <td *ngIf="element.zone == zone">
+      <span><i class="fa fa-times-circle fa-lg" aria-hidden="true" (click)="deleteElement(element.id_element)"></i></span>
+    </td>
+  </tr>
+</table>
