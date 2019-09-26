@@ -12,7 +12,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.router';
-import { ZonePipe } from './pipes/zone.pipe';
 
 @NgModule({
   declarations: [
@@ -26,10 +25,9 @@ import { ZonePipe } from './pipes/zone.pipe';
     IndexModule,
     RouterModule.forRoot(routes, { useHash: false })
   ],
+  // Comme les services (AuthService, AuthGuard, ElementService) sont injectés en tant que providedIn:'root',
+  // il n'est pas necessaire de les déclarer ici
   providers: [
-    AuthService,
-    AuthGuard, 
-    ElementService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
