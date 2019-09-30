@@ -12,6 +12,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { routes } from './app.router';
     HttpClientModule,
     HomeModule,
     IndexModule,
-    RouterModule.forRoot(routes, { useHash: false })
+    RouterModule.forRoot(routes, { useHash: false }),
+    BrowserAnimationsModule
   ],
   // Comme les services (AuthService, AuthGuard, ElementService) sont injectés en tant que providedIn:'root',
   // il n'est pas necessaire de les déclarer ici

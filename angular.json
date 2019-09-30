@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bulma/css/bulma.css",
@@ -127,6 +128,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "home-app"
 }

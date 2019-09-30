@@ -14,6 +14,13 @@ export const HomeRoutes: Route[] = [
                   import('../home/mescourses/mescourses.module').then(
                     m => m.MescoursesModule
                 )
+            },
+            {
+                path: 'mescoursesv2',
+                loadChildren: () =>
+                  import('../home/mescourses-dragdrop/mescourses-dragdrop.module').then(
+                    m => m.MescoursesDragdropModule
+                )
             }
         ]
     }

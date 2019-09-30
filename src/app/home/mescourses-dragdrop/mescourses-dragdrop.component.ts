@@ -1,17 +1,14 @@
-//import { element } from 'protractor';
 import { Element } from './../../models/element';
 import { ElementService } from './../../services/element.service';
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
-
 @Component({
-  selector: 'app-mescourses',
-  templateUrl: './mescourses.component.html',
-  styleUrls: ['./mescourses.component.css']
-  //changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-mescourses-dragdrop',
+  templateUrl: './mescourses-dragdrop.component.html',
+  styleUrls: ['./mescourses-dragdrop.component.css']
 })
-export class MescoursesComponent implements OnInit {
+export class MescoursesDragdropComponent implements OnInit {
   elements : Element[];
   newElement : Element = new Element();
 

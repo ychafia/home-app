@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'zone',
-  //pure: false //By default is true (stateless)
+  pure: false //By default is true (stateless)
 })
 export class ZonePipe implements PipeTransform {
 

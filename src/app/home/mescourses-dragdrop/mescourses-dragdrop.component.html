@@ -1,0 +1,142 @@
+
+<div class="container">
+    <form class="field is-grouped" (ngSubmit)="addNewElement()" >
+        <mat-form-field>
+        <mat-select placeholder="Zone ..." name="zone" [(ngModel)]="newElement.zone">
+            <mat-option value="1">Zone 1</mat-option>
+            <mat-option value="2">Zone 2</mat-option>
+            <mat-option value="3">Zone 3</mat-option>
+            <mat-option value="4">Zone 4</mat-option>
+        </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput placeholder="Saisir ici ..." name="libelle" [(ngModel)]="newElement.libelle">
+        </mat-form-field>
+    </form>
+    </div>
+    
+    <div class="">
+    
+    <div cdkDropList
+        #preList1="cdkDropList"
+        [cdkDropListData]="preselection1"
+        [cdkDropListConnectedTo]="[zone1List]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of preselection1" cdkDrag> 
+        <img [src]="item.url" width="30" height="0">
+        {{item.libelle}}
+        </div>
+    </div>
+    <br>
+    <div cdkDropList
+        #preList2="cdkDropList"
+        [cdkDropListData]="preselection2"
+        [cdkDropListConnectedTo]="[zone2List]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of preselection2" cdkDrag> 
+        <img [src]="item.url" width="30" height="0">
+        {{item.libelle}}
+        </div>
+    </div>
+    <br>
+    <div cdkDropList
+        #preList3="cdkDropList"
+        [cdkDropListData]="preselection3"
+        [cdkDropListConnectedTo]="[zone3List]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of preselection3" cdkDrag> 
+        <img [src]="item.url" width="30" height="0">
+        {{item.libelle}}
+        </div>
+    </div>
+    <br>
+    <div cdkDropList
+        #preList4="cdkDropList"
+        [cdkDropListData]="preselection4"
+        [cdkDropListConnectedTo]="[zone4List]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of preselection4" cdkDrag> 
+        <img [src]="item.url" width="30" height="0">
+        {{item.libelle}}
+        </div>
+    </div>
+    </div>
+    <br>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+        <h4>Zone 1</h4>
+        <div
+            cdkDropList
+            #zone1List="cdkDropList"
+            [cdkDropListData]="elementsZone1"
+            [cdkDropListConnectedTo]="[preList1]"
+            class="example-list2"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box2" *ngFor="let item of elements | zone:1" cdkDrag>
+            {{item.libelle}}
+            <span class="toggleElement"><mat-slide-toggle (change)="makeDone(item)" [checked]="item.done" ></mat-slide-toggle></span>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6">
+        <h4>Zone 2</h4>
+        <div
+            cdkDropList
+            #zone2List="cdkDropList"
+            [cdkDropListData]="elementsZone2"
+            [cdkDropListConnectedTo]="[preList2]"
+            class="example-list2"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box2" *ngFor="let item of elements | zone:2" cdkDrag>
+            {{item.libelle}}
+            <span class="toggleElement"><mat-slide-toggle (change)="makeDone(item)" [checked]="item.done" ></mat-slide-toggle></span>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+        <h4>Zone 3</h4>
+        <div
+            cdkDropList
+            #zone3List="cdkDropList"
+            [cdkDropListData]="elementsZone3"
+            [cdkDropListConnectedTo]="[preList3]"
+            class="example-list2"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box2" *ngFor="let item of elements | zone:3" cdkDrag>
+            {{item.libelle}}
+            <span class="toggleElement"><mat-slide-toggle (change)="makeDone(item)" [checked]="item.done" ></mat-slide-toggle></span>
+            </div>
+        </div>
+        </div>
+        
+        <div class="col-md-6">
+        <h4>Zone 4</h4>
+        <div
+            cdkDropList
+            #zone4List="cdkDropList"
+            [cdkDropListData]="elementsZone4"
+            [cdkDropListConnectedTo]="[preList4]"
+            class="example-list2"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box2" *ngFor="let item of elements | zone:4" cdkDrag>
+            {{item.libelle}}
+            <span class="toggleElement"><mat-slide-toggle (change)="makeDone(item)" [checked]="item.done" ></mat-slide-toggle></span>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 field btnDeleteAll">
+            <div class="field is-grouped is-grouped-centered">
+            <a class="button is-primary" (click)="deleteAll()">Terminer</a>
+            </div>
+        </div>
+    </div>
+</div>
