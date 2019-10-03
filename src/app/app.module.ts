@@ -9,7 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //HttpClient
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule, //l'ordre est important, il faudra l'utiliser à la fin des imports
     HttpClientModule,
     HomeModule,
     IndexModule,
@@ -28,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   // Comme les services (AuthService, AuthGuard, ElementService) sont injectés en tant que providedIn:'root',
-  // il n'est pas necessaire de les déclarer ici
+  // il n'est pas necessaire de les déclarer ici depuis Angular 6
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],

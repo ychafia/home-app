@@ -1,3 +1,4 @@
+import { ConfigAPI } from './../config/api.config';
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,33 +9,33 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ElementService {
-  
+  api_url: string = ConfigAPI.API_ENDPOINT;
   constructor(private http: HttpClient) {
    }
 
   public getElement() : Observable<any> {
-    return this.http.get<any>('http://localhost:9090/elementsapi/elements').pipe(
+    return this.http.get<any>(this.api_url + '/elementsapi/elements').pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
   public addElement(element) : Observable<any> {
-    return this.http.post<any>('http://localhost:9090/elementsapi/element', element).pipe(
+    return this.http.post<any>(this.api_url + '/elementsapi/element', element).pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
   public makeDone(element) {
-    return this.http.post<any>('http://localhost:9090/elementsapi/element', element).pipe(
+    return this.http.post<any>(this.api_url + '/elementsapi/element', element).pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
   public deleteElement(id) {
-    return this.http.delete<any>('http://localhost:9090/elementsapi/element/' + id).pipe(
+    return this.http.delete<any>(this.api_url + '/elementsapi/element/' + id).pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
