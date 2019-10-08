@@ -6,24 +6,11 @@
           <span class="slider round"></span>
       </label>
     </td>
-    <td *ngIf="element.zone == zone">
+    <td *ngIf="element.zone == zone" class="text-center">
       <label>{{element.libelle}} </label>
     </td>
-    <td *ngIf="element.zone == zone">
+    <td *ngIf="element.zone == zone" class="text-right">
       <span><i class="fa fa-times-circle fa-lg" aria-hidden="true" (click)="deleteElement(element.id_element)"></i></span>
     </td>
   </tr>
 </table>
-<!-- <div class="example-container">
-  <h2>Ma liste : </h2>
-
-  <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList]"
-    class="example-list2"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box2" *ngFor="let item of done" cdkDrag>{{item}}</div>
-  </div>
-</div> -->

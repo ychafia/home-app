@@ -6,6 +6,10 @@ import { Route } from '@angular/router';
 
 
 export const IndexRoutes: Route[] = [
+    
+    {
+        path: '', redirectTo: '/login', pathMatch: 'full'
+    },
     {
         path: '',
         component: IndexComponent,

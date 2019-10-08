@@ -1,71 +1,66 @@
-<div class="column">
-  <h1 class="title">Mes courses</h1>
-  <div class="field is-grouped is-grouped-centered">
-    <form class="field is-grouped" (ngSubmit)="addNewElement()" >
-      <div class="control">
-        <div class="select is-primary">
-          <select name="zone" [(ngModel)]="newElement.zone">
-            <option value="1">Zone 1</option>
-            <option value="2">Zone 2</option>
-            <option value="3">Zone 3</option>
-            <option value="4">Zone 4</option>
-          </select>
-        </div>
-      </div>
-      <div class="control is-expanded">
-        <input class="input" type="text" placeholder="Saisir ici ..." name="libelle" [(ngModel)]="newElement.libelle">
-      </div>
-    </form>
-  </div>
-  <div class="field is-grouped is-grouped-centered">
-    <div class="control">
-      <label class="checkbox">
-        <label class="switch">
-          <input type="checkbox" [checked]="checkedZones[0]" (click)="toggleZone(0)">
-          <span class="slider round"></span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" [checked]="checkedZones[1]" (click)="toggleZone(1)">
-          <span class="slider round"></span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" [checked]="checkedZones[2]" (click)="toggleZone(2)">
-          <span class="slider round"></span>
-        </label>
-        <label class="switch">
-          <input type="checkbox" [checked]="checkedZones[3]" (click)="toggleZone(3)">
-          <span class="slider round"></span>
-        </label>
-      </label>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control">
-      <div class="columns zone-element is-desktop">
-        <div class="column list-element" *ngIf="checkedZones[0]">
-          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="1" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
-        </div>
-        <div class="column list-element" *ngIf="checkedZones[1]">
-          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="2" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
+<div class="container">
+  <form class="field is-grouped is-grouped-centered" (ngSubmit)="addNewElement()" >
+    <div class="row formInput">
+      <div class="col-sm ">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Saisir ici ..." name="libelle" [(ngModel)]="newElement.libelle">
+          <div class="input-group-append">
+            <select name="zone" [(ngModel)]="newElement.zone">
+              <option value="1">Zone 1</option>
+              <option value="2">Zone 2</option>
+              <option value="3">Zone 3</option>
+              <option value="4">Zone 4</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="field">
-    <div class="control">
-      <div class="columns zone-element is-desktop">
-        <div class="column list-element" *ngIf="checkedZones[2]">
-          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="3" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
-        </div>
-        <div class="column list-element" *ngIf="checkedZones[3]">
-          <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="4" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="field">
+  </form>
+  <div class="row">
+    <div class="col-sm">
       <div class="field is-grouped is-grouped-centered">
-        <a class="button is-primary" (click)="deleteAll()">Terminer</a>
+        <div class="control">
+          <label class="checkbox">
+            <label class="switch">
+              <input type="checkbox" [checked]="checkedZones[0]" (click)="toggleZone(0)">
+              <span class="slider round"></span>
+            </label>
+            <label class="switch">
+              <input type="checkbox" [checked]="checkedZones[1]" (click)="toggleZone(1)">
+              <span class="slider round"></span>
+            </label>
+            <label class="switch">
+              <input type="checkbox" [checked]="checkedZones[2]" (click)="toggleZone(2)">
+              <span class="slider round"></span>
+            </label>
+            <label class="switch">
+              <input type="checkbox" [checked]="checkedZones[3]" (click)="toggleZone(3)">
+              <span class="slider round"></span>
+            </label>
+          </label>
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm blockList " *ngIf="checkedZones[0]">
+      <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="1" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
+    </div>
+    <div class="col-sm blockList " *ngIf="checkedZones[1]">
+      <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="2" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm blockList " *ngIf="checkedZones[2]">
+      <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="3" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
+    </div>
+    <div class="col-sm blockList " *ngIf="checkedZones[3]">
+      <app-mescourses-list *ngIf="elements" [elements]="elements" [zone]="4" (makeDone)="makeDone($event)" (deleteMe)="deleteElement($event)"></app-mescourses-list>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm text-center btnDeleteAll">
+      <a class="btn btn-primary btn-sm" (click)="deleteAll()">Terminer</a>
+    </div>
   </div>
 </div>

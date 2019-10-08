@@ -1,5 +1,6 @@
 import { ZonePipe } from './zone.pipe';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ZonePipe', () => {
   let elements : any[] = [
@@ -11,7 +12,8 @@ describe('ZonePipe', () => {
   let pipe;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        providers: [ ZonePipe ]
+        providers: [ ZonePipe ],
+        schemas: [ NO_ERRORS_SCHEMA ]
     });
     pipe = new ZonePipe();
   }));

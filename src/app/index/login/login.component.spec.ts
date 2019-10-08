@@ -6,6 +6,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 import { validUser, blankUser } from 'src/mocks';
 import { LoginComponent } from './login.component';
 import { Router } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 const authServiceSpy = jasmine.createSpyObj('AuthService', ['login']);
@@ -19,6 +20,7 @@ describe('LoginComponent : Isolated Test', () => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [ HttpClientTestingModule, FormsModule, RouterTestingModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

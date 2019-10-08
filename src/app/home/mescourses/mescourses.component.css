@@ -8,6 +8,8 @@
     /* background-color: rgb(171, 221, 159); */
     /* padding: 10px 0 10px 20px; */
     margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px
 }
 
 li {
@@ -115,4 +117,16 @@ div.scrollDragDrop {
 
 .btnDeleteAll {
     margin-top: 30px;
+}
+
+.blockList {
+    padding-left: 0;
+}
+
+.formInput {
+    margin-top: 25px;
+}
+
+.btnDeleteAll {
+    margin-top: 25px;
 }
