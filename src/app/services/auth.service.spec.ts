@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
@@ -27,4 +27,19 @@ describe('AuthService', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service.isAuthenticated()).toBe(false);
   })
+
+  it('login should return true from back-end', () => {
+    const httpTestingController = TestBed.get(HttpTestingController);
+    const service: AuthService = TestBed.get(AuthService);
+    const fakePostData = { username: 'test', password:  'test'};
+    const mockReturnedToken = {token: "Bearer test"};
+    service.login(fakePostData).subscribe(data => {
+      expect(data).toBe(true);
+    });
+
+    const req = httpTestingController.expectOne('http://localhost:8080/authenticate');
+    console.log(req);
+    expect(req.request.method).toBe('POST');
+  })
+
 });
