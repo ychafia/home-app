@@ -77,4 +77,7 @@ export class MescoursesComponent implements OnInit {
     this.newElement.zone = 1;
   }
 
+  refresh() {
+    this.elementService.getElement().subscribe(elem => this.elements = elem);
+  }
 }
