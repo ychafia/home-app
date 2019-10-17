@@ -1,0 +1,12 @@
+.note :hover{
+    cursor: pointer;
+}
+
+.noteTitle {
+    text-align: center;
+    margin: 2%;
+}
+
+.addNote:hover{
+    cursor: pointer;
+}

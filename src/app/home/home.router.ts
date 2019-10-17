@@ -1,3 +1,4 @@
+import { MesnotesModule } from './mesnotes/mesnotes.module';
 import { MescoursesModule } from './mescourses/mescourses.module';
 import { AuthGuard } from './../guards/auth.guard';
 import { HomeComponent } from './home.component';
@@ -20,6 +21,13 @@ export const HomeRoutes: Route[] = [
                 loadChildren: () =>
                   import('../home/mescourses-dragdrop/mescourses-dragdrop.module').then(
                     m => m.MescoursesDragdropModule
+                )
+            },
+            {
+                path: 'mesnotes',
+                loadChildren: () =>
+                  import('../home/mesnotes/mesnotes.module').then(
+                    m => m.MesnotesModule
                 )
             }
         ]

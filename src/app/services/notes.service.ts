@@ -1,41 +1,41 @@
-import { ConfigAPI } from './../config/api.config';
-import { Observable, throwError } from 'rxjs';
-import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ConfigAPI } from './../config/api.config';
+import { Observable, of, throwError } from 'rxjs';
+import { Note } from './../models/note';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ElementService {
+export class NotesService {
   api_url: string = ConfigAPI.API_ENDPOINT;
   constructor(private http: HttpClient) {
    }
 
-  public getElement() : Observable<any> {
-    return this.http.get<any>(this.api_url + '/api/mes-courses-api/elements').pipe(
+  getNotes() : Observable<Note[]>{
+    return this.http.get<any>(this.api_url + '/api/mes-notes-api/notes').pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
-  public addElement(element) : Observable<any> {
-    return this.http.post<any>(this.api_url + '/api/mes-courses-api/element', element).pipe(
+  getNoteById(id: number) : Observable<Note>{
+    return this.http.get<any>(this.api_url + '/api/mes-notes-api/notes/'+id).pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
-  public makeDone(element) {
-    return this.http.post<any>(this.api_url + '/api/mes-courses-api/element', element).pipe(
+  addNote(note: Note) : Observable<any> {
+    return this.http.post<any>(this.api_url + '/api/mes-notes-api/note', note).pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
-  public deleteElement(id) {
-    return this.http.delete<any>(this.api_url + '/api/mes-courses-api/element/' + id).pipe(
+  deleteNote(id: number) : Observable<any> {
+    return this.http.delete<any>(this.api_url + '/api/mes-notes-api/note/' + id).pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
