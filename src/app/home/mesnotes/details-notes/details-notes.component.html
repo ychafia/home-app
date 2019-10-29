@@ -19,12 +19,28 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-12 text-center btn-warning">
+    {{textError}}
+  </div>
+</div>
 <div class="form-group">
   <label>Titre : </label>
   <input type="input" class="form-control" placeholder="Titre" [(ngModel)]="note.title_note" />
 </div>
 <div class="form-group">
-  <label>Note :</label>
-  <textarea class="form-control" rows="4" [(ngModel)]="note.description_note"> </textarea>
+  <mat-form-field>
+    <input matInput [matDatepicker]="dp" placeholder="Date de l'événement" [(ngModel)]="note.recall_date_note">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp></mat-datepicker>
+  </mat-form-field>
+</div>
+<div class="form-group">
+  <button (click)="editNote()" title="Sauvegarder la note" type="button" class="btn " [disabled]="edit">
+    Note : <i class="fa fa-pencil" aria-hidden="true"></i> 
+  </button>
+  <textarea class="form-control" rows="4" [(ngModel)]="note.description_note" *ngIf="edit || id_note == 0"> </textarea>
+  <div *ngIf="!edit && id_note != 0"  [innerHTML]="description_note" class="desc_note">
+  </div>
 </div>
 

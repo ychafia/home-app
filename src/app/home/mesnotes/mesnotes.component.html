@@ -1,7 +1,5 @@
 <span class="noteTitle">
-  <h2>Mes notes 
-    <i title="Ajouter une note" class="fa fa-plus-square addNote" aria-hidden="true" routerLink="/mesnotes/details-note/0"></i> 
-  </h2>
+  <h2> Mes notes </h2>
 </span>
 <table class="table table-striped table-hover">
   <thead>
@@ -24,3 +22,14 @@
     </tr>
   </tbody>
 </table>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <p>side nav works</p>
+  </mat-sidenav>
+  <div class="example-container">
+    <button class="mine" mat-fab color="primary" (click)="gotoAddNew()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-sidenav-container>

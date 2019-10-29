@@ -1,3 +1,4 @@
+import { MaterialModule } from './../../config/material.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { DetailsNotesComponent } from './details-notes/details-notes.component';
     CommonModule,
     FormsModule,
     RouterModule.forChild(MesnotesRoutes),
+    MaterialModule
   ]
 })
 export class MesnotesModule { }

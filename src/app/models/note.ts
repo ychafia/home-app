@@ -3,5 +3,5 @@ export class Note {
     title_note: string;
     description_note: string;
     completed_note: boolean;
-    recall_date_note: string;
+    recall_date_note: Date;
 }

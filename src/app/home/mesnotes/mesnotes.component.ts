@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import { Note } from './../../models/note';
 import { NotesService } from './../../services/notes.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MesnotesComponent implements OnInit {
   notes: Note[] = [];
-  constructor(private notesService: NotesService) { }
+  constructor(private notesService: NotesService, private _snackBar: MatSnackBar, private router: Router) { }
 
   getNotes() : void {
     this.notesService.getNotes().subscribe(data => {
@@ -21,6 +23,9 @@ export class MesnotesComponent implements OnInit {
     this.notesService.deleteNote(id).subscribe(data => {
       if(data) {
         this.pop_enote_from_array(id);
+        this._snackBar.open("Succès", "Fermer", {
+          duration: 6000,
+        });
       }
     })
   }
@@ -32,6 +37,10 @@ export class MesnotesComponent implements OnInit {
           break;
       }
     }
+  }
+
+  gotoAddNew() {
+    this.router.navigate(['mesnotes/details-note/0']);
   }
 
   ngOnInit() {
