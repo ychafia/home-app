@@ -29,6 +29,13 @@ export const HomeRoutes: Route[] = [
                   import('../home/mesnotes/mesnotes.module').then(
                     m => m.MesnotesModule
                 )
+            },
+            {
+                path: 'mescomptes',
+                loadChildren: () =>
+                  import('../home/mescomptes/mescomptes.module').then(
+                    m => m.MescomptesModule
+                )
             }
         ]
     }
