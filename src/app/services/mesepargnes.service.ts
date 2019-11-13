@@ -3,6 +3,7 @@ import { ConfigAPI } from '../config/api.config';
 import { Observable, throwError, of } from 'rxjs';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
+import { Epargne } from '../models/epargne';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,10 @@ export class MesepargnesService {
       catchError(this.handleError)
     );*/
     return of(this.data);
+  }
+
+  public addUpdateEpargne(epargne: Epargne): Observable<any> {
+    return of(epargne);
   }
 
   public getTotaux() : Observable<any> {

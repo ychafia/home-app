@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MescomptesComponent } from './mescomptes.component';
-import { MesepargnesComponent } from './mesepargnes/mesepargnes.component';
+import { MesepargnesComponent, AddTypeEpargneDialog } from './mesepargnes/mesepargnes.component';
 import { MesdepensesComponent } from './mesdepenses/mesdepenses.component';
 import { MescomptesRoutes } from './mescomptes.router';
 import { FormsModule } from '@angular/forms';
@@ -12,13 +12,14 @@ import { TypeEpargneComponent } from './mesepargnes/type-epargne/type-epargne.co
 
 
 @NgModule({
-  declarations: [MescomptesComponent, MesepargnesComponent, MesdepensesComponent, FormatNumberSpacePipe, TypeEpargneComponent],
+  declarations: [MescomptesComponent, MesepargnesComponent, MesdepensesComponent, FormatNumberSpacePipe, TypeEpargneComponent, AddTypeEpargneDialog],
   exports: [MescomptesComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(MescomptesRoutes),
     MaterialModule
-  ]
+  ],
+  entryComponents: [AddTypeEpargneDialog]
 })
 export class MescomptesModule { }

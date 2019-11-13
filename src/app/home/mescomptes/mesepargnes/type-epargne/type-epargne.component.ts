@@ -6,13 +6,16 @@ import { Epargne } from 'src/app/models/epargne';
   templateUrl: './type-epargne.component.html',
   styleUrls: ['./type-epargne.component.css']
 })
-export class TypeEpargneComponent implements OnInit {
+export class TypeEpargneComponent implements OnInit{
   @Input() epargnes: Epargne[];
   total_debit: number = 0;
   total_credit: number = 0;
   constructor() { }
 
   calculate_totaux() :  void {
+    this.total_credit = 0;
+    this.total_debit = 0;
+    console.log(this.epargnes);
     for(let item of this.epargnes) {
       if(item.montant_epargne > 0) {
         this.total_credit += item.montant_epargne;
@@ -25,5 +28,4 @@ export class TypeEpargneComponent implements OnInit {
   ngOnInit() {
     this.calculate_totaux();
   }
-
 }

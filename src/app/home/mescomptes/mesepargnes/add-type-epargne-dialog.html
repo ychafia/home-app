@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Ajouter une epargne : </h2>
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Type epargne :</label>
+        <select name="typeEp" class="form-control" [(ngModel)]="data.type_epargne">
+          <option value="Livret A">Livret A</option>
+          <option value="PEL 1">PEL 1</option>
+          <option value="PEL 2">PEL 2</option>
+          <option value="Assurance vie">Assurance vie</option>
+        </select>
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Date :</label>
+        <input type="text" class="form-control" placeholder="Date ..." name="date" [(ngModel)]="data.date_epargne">
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Montant epargne :</label>
+        <input type="text" class="form-control" placeholder="Montant ..." name="montant" [(ngModel)]="data.montant_epargne">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Motif epargne :</label>
+        <input type="text" class="form-control" placeholder="Motif ..." name="motif" [(ngModel)]="data.motif_epargne">
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="cancelDialog()">Annuler</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ajouter</button>
+</mat-dialog-actions>
