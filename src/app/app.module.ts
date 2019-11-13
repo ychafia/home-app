@@ -13,10 +13,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { routes } from './app.router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { NumericDirective } from './directives/numeric.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    //NumericDirective,
   ],
   imports: [
     BrowserModule,

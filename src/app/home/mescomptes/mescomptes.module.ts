@@ -9,10 +9,11 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/config/material.module';
 import { FormatNumberSpacePipe } from 'src/app/pipes/format-number-space.pipe';
 import { TypeEpargneComponent } from './mesepargnes/type-epargne/type-epargne.component';
+import { NumericDirective } from 'src/app/directives/numeric.directive';
 
 
 @NgModule({
-  declarations: [MescomptesComponent, MesepargnesComponent, MesdepensesComponent, FormatNumberSpacePipe, TypeEpargneComponent, AddTypeEpargneDialog],
+  declarations: [MescomptesComponent, MesepargnesComponent, MesdepensesComponent, FormatNumberSpacePipe, TypeEpargneComponent, AddTypeEpargneDialog, NumericDirective],
   exports: [MescomptesComponent],
   imports: [
     CommonModule,
