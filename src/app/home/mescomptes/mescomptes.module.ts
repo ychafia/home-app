@@ -10,10 +10,11 @@ import { MaterialModule } from 'src/app/config/material.module';
 import { FormatNumberSpacePipe } from 'src/app/pipes/format-number-space.pipe';
 import { TypeEpargneComponent } from './mesepargnes/type-epargne/type-epargne.component';
 import { NumericDirective } from 'src/app/directives/numeric.directive';
+import { GraphicsEpargnesComponent } from './mesepargnes/graphics-epargnes/graphics-epargnes.component';
 
 
 @NgModule({
-  declarations: [MescomptesComponent, MesepargnesComponent, MesdepensesComponent, FormatNumberSpacePipe, TypeEpargneComponent, AddTypeEpargneDialog, NumericDirective],
+  declarations: [MescomptesComponent, MesepargnesComponent, MesdepensesComponent, FormatNumberSpacePipe, TypeEpargneComponent, AddTypeEpargneDialog, NumericDirective, GraphicsEpargnesComponent],
   exports: [MescomptesComponent],
   imports: [
     CommonModule,

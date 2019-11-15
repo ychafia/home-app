@@ -131,6 +131,7 @@ export class MesepargnesComponent implements OnInit {
     console.log("changeDate called");
     this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
       this.mesepargnes = resp;
+      this.calculate_totaux();
     })
   }
 
