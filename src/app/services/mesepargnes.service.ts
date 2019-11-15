@@ -61,9 +61,13 @@ export class MesepargnesService {
     return of(epargne);
   }
 
+  public deleteEpargne(id: number) : Observable<boolean> {
+    return of(true);
+  }
+
   public getTotaux() : Observable<any> {
     let data = [
-      {"total_debit" : 500, "total_credit" : 2000}
+      {"total_debit" : 610, "total_credit" : 5920}
     ];
     return of(data);
   }

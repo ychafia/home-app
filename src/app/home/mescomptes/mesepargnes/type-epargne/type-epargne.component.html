@@ -1,3 +1,4 @@
+<!-- 
 <table class="table table-striped table-hover">
 	<thead>
 		<tr class="table-primary">
@@ -24,16 +25,17 @@
 		</tr>
 		<tr class="table-primary">
 			<td class="text-center" colspan="2">
-				<b>Total débit : </b> {{ total_debit | formatNumberSpace }}
+				<b>Total débit : </b> {{ sub_total_debit | formatNumberSpace }}
 			</td>
 			<td colspan="2">
-				<b>Total débit : </b> {{ total_credit | formatNumberSpace }}
+				<b>Total débit : </b> {{ sub_total_credit | formatNumberSpace }}
 			</td>
 		</tr>
 		<tr class="table-primary">
 			<td class="text-center" colspan="4">
-				<b>Solde total : {{ total_credit + total_debit | formatNumberSpace }} <i class="fa fa-eur" aria-hidden="true"></i> </b>
+				<b>Solde total : {{ sub_total_credit + sub_total_debit | formatNumberSpace }} <i class="fa fa-eur" aria-hidden="true"></i> </b>
 			</td>
 		</tr>
 	</tbody>
 </table>
+-->

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Ajouter une epargne : </h2>
+<h2 mat-dialog-title>Ajouter une epargne :</h2>
 <mat-dialog-content class="mat-typography">
   <div class="row">
     <div class="col-12">
@@ -17,7 +17,7 @@
     <div class="col-12">
       <div class="form-group">
         <label>Date :</label>
-        <input type="number" class="form-control" placeholder="Date ..." name="date" [(ngModel)]="data.date_epargne">
+        <input type="text" class="form-control" placeholder="Date ..." name="date" [(ngModel)]="data.date_epargne">
       </div>
     </div>
   </div> 
@@ -39,6 +39,11 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close (click)="cancelDialog()">Annuler</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ajouter</button>
+
+  <button mat-button mat-dialog-close *ngIf="!data.id_epargne" (click)="cancelDialog()">Annuler</button>
+  <button mat-button [mat-dialog-close]="data" *ngIf="!data.id_epargne" cdkFocusInitial>Ajouter</button>
+
+  <button mat-button [mat-dialog-close]="data" *ngIf="data.id_epargne" (click)="deleteEpargne(data.id_epargne)">Supprimer</button>
+  <button mat-button [mat-dialog-close]="data" *ngIf="data.id_epargne" cdkFocusInitial>Editer</button>
+
 </mat-dialog-actions>

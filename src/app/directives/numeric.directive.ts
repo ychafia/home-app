@@ -25,10 +25,7 @@ export class NumericDirective {
           return;
       }
       let current: string = this.el.nativeElement.value;
-      console.log("current", current);
-      console.log("maDirective", event.key);
       let next: string = current.concat(event.key);
-      console.log("next", next);
       if (next && !String(next).match(/\-?\d*\.?\d{1,2}/igm)) {
           event.preventDefault();
       }

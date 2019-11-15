@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Epargne } from 'src/app/models/epargne';
 
 @Component({
@@ -6,26 +6,30 @@ import { Epargne } from 'src/app/models/epargne';
   templateUrl: './type-epargne.component.html',
   styleUrls: ['./type-epargne.component.css']
 })
-export class TypeEpargneComponent implements OnInit{
-  @Input() epargnes: Epargne[];
-  total_debit: number = 0;
-  total_credit: number = 0;
+export class TypeEpargneComponent implements OnInit, OnChanges{
+  /*@Input('epargnes') epargnes: Epargne[];
+  sub_total_debit: number = 0;
+  sub_total_credit: number = 0;
   constructor() { }
 
   calculate_totaux() :  void {
-    this.total_credit = 0;
-    this.total_debit = 0;
+    this.sub_total_credit = 0;
+    this.sub_total_debit = 0;
     console.log(this.epargnes);
     for(let item of this.epargnes) {
       if(item.montant_epargne > 0) {
-        this.total_credit += item.montant_epargne;
+        this.sub_total_credit += item.montant_epargne;
       } else {
-        this.total_debit += item.montant_epargne;
+        this.sub_total_debit += item.montant_epargne;
       }
     }
-  }
+  }*/
 
   ngOnInit() {
-    this.calculate_totaux();
+    //this.calculate_totaux();
+  }
+
+  ngOnChanges(){
+    //console.log("changes");
   }
 }
