@@ -49,7 +49,7 @@ export class MesepargnesService {
        ]
     }
   ];
-  public getEpargnes() : Observable<any> {
+  public getEpargnes(year: string) : Observable<any> {
     /*return this.http.get<any>('stubs/epargnes.json').pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
@@ -65,12 +65,23 @@ export class MesepargnesService {
     return of(true);
   }
 
-  public getTotaux() : Observable<any> {
+  public get_years() : Observable<any>{
+    let years = [
+      {value: '2017', active: false},
+      {value: '2018', active: false},
+      {value: '2019', active: true},
+      {value: '2020', active: false},
+      {value: '2021', active: false}
+    ];
+    return of(years);
+  }
+
+  /*public getTotaux() : Observable<any> {
     let data = [
       {"total_debit" : 610, "total_credit" : 5920}
     ];
     return of(data);
-  }
+  }*/
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';

@@ -16,6 +16,8 @@ export class MesepargnesComponent implements OnInit {
   total_debit: number;
   sub_total_debit: number[] = [];
   sub_total_credit: number[] = [];
+  selectedYear: string;
+  years: any;
 
   constructor(private mesepargnesService: MesepargnesService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router) { }
 
@@ -125,8 +127,24 @@ export class MesepargnesComponent implements OnInit {
     }
   }
 
+  changeDate() {
+    console.log("changeDate called");
+    this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
+      this.mesepargnes = resp;
+    })
+  }
+
   ngOnInit() {
-    this.mesepargnesService.getEpargnes().subscribe(resp => {
+    //console.log(this.selectedYear);
+    this.mesepargnesService.get_years().subscribe(resp => {
+      this.years = resp;
+      for(let year of this.years) {
+        if(year.active) {
+          this.selectedYear = year.value;
+        }
+      }
+    });
+    this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
       this.mesepargnes = resp;
       this.calculate_totaux();
     });

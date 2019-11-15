@@ -8,10 +8,13 @@
 		<div class="col-3">
 			<div class="form-group">
 				<label for="yearSelection">Année : </label>
-				<select class="form-control" id="yearSelection">
+				<!--<select class="form-control" id="yearSelection" [(ngModel)]="selectedYear">
 					<option>2019</option>
 					<option>2018</option>
 					<option>2017</option>
+				</select>-->
+				<select class="form-control" id="yearSelection" [(ngModel)]="selectedYear" (change)="changeDate()">
+					<option *ngFor="let year of years" [value]="year.value">{{year.value}}  </option>
 				</select>
 			</div>
 		</div>
