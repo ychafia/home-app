@@ -140,8 +140,8 @@ export class MesepargnesComponent implements OnInit {
     this.mesepargnesService.get_years().subscribe(resp => {
       this.years = resp;
       for(let year of this.years) {
-        if(year.active) {
-          this.selectedYear = year.value;
+        if(year.active_year) {
+          this.selectedYear = year.value_year;
         }
       }
     });

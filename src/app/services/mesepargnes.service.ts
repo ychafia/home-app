@@ -50,11 +50,11 @@ export class MesepargnesService {
     }
   ];
   public getEpargnes(year: string) : Observable<any> {
-    /*return this.http.get<any>('stubs/epargnes.json').pipe(
+    return this.http.get<any>(this.api_url + '/api/mes-epargnes-api/epargnes/2019').pipe(
       tap(data => console.log('Tap: ' + JSON.stringify(data))),
       catchError(this.handleError)
-    );*/
-    return of(this.data);
+    );
+    //return of(this.data);
   }
 
   public addUpdateEpargne(epargne: Epargne): Observable<any> {
@@ -66,14 +66,10 @@ export class MesepargnesService {
   }
 
   public get_years() : Observable<any>{
-    let years = [
-      {value: '2017', active: false},
-      {value: '2018', active: false},
-      {value: '2019', active: true},
-      {value: '2020', active: false},
-      {value: '2021', active: false}
-    ];
-    return of(years);
+    return this.http.get<any>(this.api_url + '/api/mes-epargnes-api/years').pipe(
+      tap(data => console.log('Tap: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
   }
 
   /*public getTotaux() : Observable<any> {
