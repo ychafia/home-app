@@ -18,6 +18,7 @@ export class MesepargnesComponent implements OnInit {
   sub_total_credit: number[] = [];
   selectedYear: string;
   years: any;
+  types_epargnes: any;
 
   constructor(private mesepargnesService: MesepargnesService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router) { }
 
@@ -25,13 +26,14 @@ export class MesepargnesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddTypeEpargneDialog, {
       height: '500px',
       width: '600px',
-      data: {}
+      data: {"types": this.types_epargnes}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result && result.date_epargne && result.montant_epargne && result.motif_epargne) {
+      if(result && result.date_epargne && result.montant_epargne && result.motif_epargne && result.type_epargne) {
         let _epargne = new Epargne(result.id_epargne, result.date_epargne, Number(result.montant_epargne), result.motif_epargne);
-        this.mesepargnesService.addUpdateEpargne(_epargne).subscribe(resp => {
+        this.mesepargnesService.addUpdateEpargne(_epargne, result.type_epargne).subscribe(resp => {
+          _epargne.id_epargne = resp.id_epargne;
           this.push_epargne_to_array(_epargne, result.type_epargne);
         })
       } else {
@@ -46,10 +48,13 @@ export class MesepargnesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddTypeEpargneDialog, {
       height: '500px',
       width: '600px',
-      data: {type_epargne: type, id_epargne: epargne.id_epargne, date_epargne: epargne.date_epargne, montant_epargne: epargne.montant_epargne, motif_epargne: epargne.motif_epargne, deleteEpargne: ''}
+      data: {type_epargne: type, id_epargne: epargne.id_epargne, date_epargne: epargne.date_epargne, 
+            montant_epargne: epargne.montant_epargne, motif_epargne: epargne.motif_epargne, 
+            deleteEpargne: '', "types": this.types_epargnes}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if(result) {
         if(result.deleteEpargne != '') {
           console.log("do delete", result);
@@ -62,7 +67,7 @@ export class MesepargnesComponent implements OnInit {
         } else {
           console.log("do edit", result.id_epargne);
           let _epargne = new Epargne(result.id_epargne, result.date_epargne, Number(result.montant_epargne), result.motif_epargne);
-          this.mesepargnesService.addUpdateEpargne(_epargne).subscribe(resp => {
+          this.mesepargnesService.addUpdateEpargne(_epargne, result.type_epargne).subscribe(resp => {
             this.delete_epargne_from_array(result.id_epargne, result.type_epargne);
             this.push_epargne_to_array(_epargne, result.type_epargne);
           })
@@ -104,7 +109,7 @@ export class MesepargnesComponent implements OnInit {
 
   push_epargne_to_array(_epargne: Epargne, type: string) :  void {
     for(let item of this.mesepargnes) {
-      if(item.type == type ) {
+      if(item.type.toLocaleLowerCase() == type.toLocaleLowerCase() ) {
         item.epargnes.push(_epargne);
         this.calculate_totaux();
         this._snackBar.open("Succès", "Fermer", {
@@ -116,10 +121,11 @@ export class MesepargnesComponent implements OnInit {
 
   delete_epargne_from_array(id: number, type: string) {
     for(let epargnes of this.mesepargnes) {
-      if(type == epargnes.type ) {
+      if(type.toLocaleLowerCase() == epargnes.type.toLocaleLowerCase() ) {
         for(var i = 0; i < epargnes.epargnes.length; i++) {
           if(epargnes.epargnes[i].id_epargne == id) {
             epargnes.epargnes.splice(i, 1);
+            this.calculate_totaux();
               break;
           }
         }
@@ -135,20 +141,27 @@ export class MesepargnesComponent implements OnInit {
     })
   }
 
+  get_types_epargnes() {
+    this.mesepargnesService.get_types_epargnes(this.selectedYear).subscribe(resp => {
+      this.types_epargnes = resp;
+    })
+  }
+
   ngOnInit() {
-    //console.log(this.selectedYear);
     this.mesepargnesService.get_years().subscribe(resp => {
       this.years = resp;
       for(let year of this.years) {
         if(year.active_year) {
           this.selectedYear = year.value_year;
+          this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
+            this.mesepargnes = resp;
+            this.calculate_totaux();
+          });
         }
       }
+      this.get_types_epargnes();
     });
-    this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
-      this.mesepargnes = resp;
-      this.calculate_totaux();
-    });
+    
   }
 
 }

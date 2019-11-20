@@ -3,13 +3,10 @@
   <div class="row">
     <div class="col-12">
       <div class="form-group">
-        <label>Type epargne :</label>
-        <select name="typeEp" class="form-control" [(ngModel)]="data.type_epargne">
-          <option value="Livret A">Livret A</option>
-          <option value="PEL 1">PEL 1</option>
-          <option value="PEL 2">PEL 2</option>
-          <option value="Assurance vie">Assurance vie</option>
-        </select>
+        <label>Type epargne : </label>
+        <select class="form-control" name="typeEp" [(ngModel)]="data.type_epargne">
+					<option *ngFor="let type of data.types" [value]="type.value_type">{{type.value_type}}</option>
+				</select>
       </div>
     </div>
   </div> 
