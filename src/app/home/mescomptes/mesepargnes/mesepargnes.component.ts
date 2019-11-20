@@ -66,11 +66,18 @@ export class MesepargnesComponent implements OnInit {
           });
         } else {
           console.log("do edit", result.id_epargne);
-          let _epargne = new Epargne(result.id_epargne, result.date_epargne, Number(result.montant_epargne), result.motif_epargne);
-          this.mesepargnesService.addUpdateEpargne(_epargne, result.type_epargne).subscribe(resp => {
+          if(result && result.date_epargne && result.montant_epargne && result.motif_epargne && result.type_epargne) {
+            let _epargne = new Epargne(result.id_epargne, result.date_epargne, Number(result.montant_epargne), result.motif_epargne);
+            this.mesepargnesService.addUpdateEpargne(_epargne, result.type_epargne).subscribe(resp => {
             this.delete_epargne_from_array(result.id_epargne, result.type_epargne);
             this.push_epargne_to_array(_epargne, result.type_epargne);
           })
+          } else {
+            this._snackBar.open("Informations manquantes : Aucune données à sauvegarder !!", "Fermer", {
+              duration: 6000,
+            });
+          }
+          
         }
         
       } else {
