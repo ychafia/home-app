@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { NumericDirective } from './directives/numeric.directive';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeModule,
     IndexModule,
     RouterModule.forRoot(routes, { useHash: false }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   // Comme les services (AuthService, AuthGuard, ElementService) sont injectés en tant que providedIn:'root',
   // il n'est pas necessaire de les déclarer ici depuis Angular 6

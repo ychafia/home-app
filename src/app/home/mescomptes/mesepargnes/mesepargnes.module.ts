@@ -9,7 +9,7 @@ import { GraphicsEpargnesComponent } from './graphics-epargnes/graphics-epargnes
 import { NumericDirective } from 'src/app/directives/numeric.directive';
 import { FormatNumberSpacePipe } from 'src/app/pipes/format-number-space.pipe';
 import { TypeEpargneComponent } from './type-epargne/type-epargne.component';
-
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { TypeEpargneComponent } from './type-epargne/type-epargne.component';
     CommonModule,
     FormsModule,
     RouterModule.forChild(MesepargnesRoutes),
-    MaterialModule
+    MaterialModule,
+    ChartsModule
   ],
   entryComponents: [AddTypeEpargneDialog]
 })

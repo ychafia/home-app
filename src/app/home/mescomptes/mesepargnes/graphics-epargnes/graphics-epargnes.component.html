@@ -1,1 +1,46 @@
-<p>graphics-epargnes works!</p>
+<!-- <div class="row text-center"> 
+	<div class="col-3" *ngFor="let type of types_epargnes">
+		<a class="btn btn-primary" href="#" role="button"> {{type.value_type}} </a>
+	</div>
+</div> -->
+<!-- <ul class="nav nav-tabs">
+	<li class="nav-item" *ngFor="let type of types_epargnes">
+		<a class="nav-link" href="#">{{type.value_type}}</a>
+	</li>
+</ul>
+ -->
+<ul class="nav nav-tabs my-li">
+	<li class="nav-item" *ngFor="let type of types_epargnes">
+		<a class="nav-link"(click)="showMe(type.id_type)"> {{type.value_type}} </a>
+	</li>
+</ul>
+<!-- First Graph -->
+<div *ngIf="activeTab == 1">
+	<div class="flex-item">
+		<div style="display: block;">
+		<canvas baseChart width="400" height="200"
+						[datasets]="lineChartData"
+						[labels]="lineChartLabels"
+						[options]="lineChartOptions"
+						[colors]="lineChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						[plugins]="lineChartPlugins"></canvas>
+		</div>
+	</div>
+</div>
+<!-- Second Graph -->
+<div *ngIf="activeTab == 2">
+	<div class="flex-item">
+		<div style="display: block;">
+		<canvas baseChart width="400" height="200"
+						[datasets]="lineChartData"
+						[labels]="lineChartLabels"
+						[options]="lineChartOptions"
+						[colors]="lineChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						[plugins]="lineChartPlugins"></canvas>
+		</div>
+	</div>
+</div>
