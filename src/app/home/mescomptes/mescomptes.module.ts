@@ -14,14 +14,13 @@ import { GraphicsEpargnesComponent } from './mesepargnes/graphics-epargnes/graph
 
 
 @NgModule({
-  declarations: [MescomptesComponent, MesepargnesComponent, MesdepensesComponent, FormatNumberSpacePipe, TypeEpargneComponent, AddTypeEpargneDialog, NumericDirective, GraphicsEpargnesComponent],
+  declarations: [MescomptesComponent, MesdepensesComponent],
   exports: [MescomptesComponent],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(MescomptesRoutes),
     MaterialModule
-  ],
-  entryComponents: [AddTypeEpargneDialog]
+  ]
 })
 export class MescomptesModule { }

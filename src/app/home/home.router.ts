@@ -33,7 +33,7 @@ export const HomeRoutes: Route[] = [
             {
                 path: 'mescomptes',
                 loadChildren: () =>
-                  import('../home/mescomptes/mescomptes.module').then(
+                  import('./mescomptes/mescomptes.module').then(
                     m => m.MescomptesModule
                 )
             }
