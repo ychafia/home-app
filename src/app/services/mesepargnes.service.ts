@@ -49,6 +49,13 @@ export class MesepargnesService {
     );
   }
 
+  public get_totaux_by_type(year) : Observable<any> {
+    return this.http.get<any>(this.api_url + '/api/mes-epargnes-api/epargnes/totaux/' + year).pipe(
+      tap(data => console.log('Tap: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

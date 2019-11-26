@@ -31,7 +31,7 @@ export class MesepargnesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result && result.date_epargne && result.montant_epargne && result.motif_epargne && result.type_epargne) {
-        let _epargne = new Epargne(result.id_epargne, result.date_epargne, Number(result.montant_epargne), result.motif_epargne);
+        let _epargne = new Epargne(result.id_epargne, this.format_date_utilities(new Date(result.date_epargne)), Number(result.montant_epargne), result.motif_epargne);
         this.mesepargnesService.addUpdateEpargne(_epargne, result.type_epargne).subscribe(resp => {
           _epargne.id_epargne = resp.id_epargne;
           this.push_epargne_to_array(_epargne, result.type_epargne);
@@ -48,7 +48,7 @@ export class MesepargnesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddTypeEpargneDialog, {
       height: '500px',
       width: '600px',
-      data: {type_epargne: type, id_epargne: epargne.id_epargne, date_epargne: epargne.date_epargne, 
+      data: {type_epargne: type, id_epargne: epargne.id_epargne, date_epargne: this.reverse_format_date_utilities(epargne.date_epargne), 
             montant_epargne: epargne.montant_epargne, motif_epargne: epargne.motif_epargne, 
             deleteEpargne: '', "types": this.types_epargnes}
     });
@@ -67,7 +67,7 @@ export class MesepargnesComponent implements OnInit {
         } else {
           console.log("do edit", result.id_epargne);
           if(result && result.date_epargne && result.montant_epargne && result.motif_epargne && result.type_epargne) {
-            let _epargne = new Epargne(result.id_epargne, result.date_epargne, Number(result.montant_epargne), result.motif_epargne);
+            let _epargne = new Epargne(result.id_epargne, this.format_date_utilities(result.date_epargne), Number(result.montant_epargne), result.motif_epargne);
             this.mesepargnesService.addUpdateEpargne(_epargne, result.type_epargne).subscribe(resp => {
             this.delete_epargne_from_array(result.id_epargne, result.type_epargne);
             this.push_epargne_to_array(_epargne, result.type_epargne);
@@ -152,6 +152,36 @@ export class MesepargnesComponent implements OnInit {
     this.mesepargnesService.get_types_epargnes(this.selectedYear).subscribe(resp => {
       this.types_epargnes = resp;
     })
+  }
+
+  format_date_utilities(date: Date) {
+    let _dd: any; let _mm: any; let _yyyy: any; let correct_date: string;
+    console.log(date);
+    _dd = date.getDate();
+    _mm = date.getMonth() + 1;
+    _yyyy = date.getFullYear();
+    if(_dd >= 0 && _dd <= 9) {
+      _dd = "0" + String(_dd);
+    }
+    if(_mm >= 0 && _mm <= 9) {
+      _mm = "0" + String(_mm);
+    }
+    correct_date = _dd + "/" + _mm + "/" + _yyyy;
+    console.log(correct_date);
+    return correct_date;
+  }
+
+  reverse_format_date_utilities(date_string: string) {
+    let _dd: any; let _mm: any; let _yyyy: any; let picker_date: Date;
+    let parts = date_string.split("/");
+    _dd = parseInt(parts[0]);
+    _mm = parseInt(parts[1]);
+    _yyyy = parseInt(parts[2]);
+    
+    picker_date = new Date(_mm + "/" + _dd + "/" + _yyyy)
+    
+    console.log(picker_date);
+    return picker_date;
   }
 
   ngOnInit() {

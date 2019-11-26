@@ -10,15 +10,17 @@ import { MesepargnesService } from 'src/app/services/mesepargnes.service';
   styleUrls: ['./graphics-epargnes.component.css']
 })
 export class GraphicsEpargnesComponent implements OnInit {
+  array_month: string[] = ["01", "02","03", "04","05", "06", "07","08", "09","10", "11", "12"];
   years : any[];
   selectedYear: any;
   types_epargnes: any;
   mesepargnes: any;
   activeTab: number = 1;
+  totaux_by_type: any[] = [];
   public lineChartData: ChartDataSets[] = [
-    { data: [0, 65, 59, 80, 81, 56, 55, 40], label: 'Livret A' },
+    { data: [], label: '' }
   ];
-  public lineChartLabels: Label[] = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Sptembre', 'Novembre', 'Décembre'];
+  public lineChartLabels: Label[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Sptembre', 'Novembre', 'Décembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -62,6 +64,16 @@ export class GraphicsEpargnesComponent implements OnInit {
           this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
             this.mesepargnes = resp;
           });
+          this.mesepargnesService.get_totaux_by_type(this.selectedYear).subscribe(resp => {
+            this.totaux_by_type = resp;
+            for(let type of this.totaux_by_type) {
+              if(type.type == 1){
+                for(let month of this.array_month) {
+                  this.lineChartData[0].data.push(type.totaux[month]);
+                }
+              }
+            }
+          });
         }
       }
       this.get_types_epargnes();
@@ -77,10 +89,17 @@ export class GraphicsEpargnesComponent implements OnInit {
 
   showMe(id: number) {
     console.log(id);
-    this.activeTab = id;
-    this.lineChartData[0].data = [0, 15, 20, 35, 50, 26];
-    this.lineChartData[0].label =  'PEL 1'; 
-    console.log(this.lineChartData[0].data);
+    if(this.activeTab != id) {
+      this.activeTab = id;
+      this.lineChartData[0].data = [];
+      for(let type of this.totaux_by_type) {
+        if(type.type == id){
+          for(let month of this.array_month) {
+            this.lineChartData[0].data.push(type.totaux[month]);
+          }
+        }
+      }
+    }
   }
 
 }
