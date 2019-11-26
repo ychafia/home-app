@@ -20,7 +20,7 @@ export class GraphicsEpargnesComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [
     { data: [], label: '' }
   ];
-  public lineChartLabels: Label[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Sptembre', 'Novembre', 'Décembre'];
+  public lineChartLabels: Label[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Sptembre', 'Octobre', 'Novembre', 'Décembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -38,9 +38,9 @@ export class GraphicsEpargnesComponent implements OnInit {
     },
   };
   public lineChartColors: Color[] = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
+    { 
+      backgroundColor: 'rgba(255,0,0,0.3)',
+      borderColor: 'red',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
@@ -48,7 +48,7 @@ export class GraphicsEpargnesComponent implements OnInit {
     }
   ];
   public lineChartLegend = true;
-  public lineChartType = 'line';
+  public lineChartType = 'bar';
   public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
@@ -66,13 +66,21 @@ export class GraphicsEpargnesComponent implements OnInit {
           });
           this.mesepargnesService.get_totaux_by_type(this.selectedYear).subscribe(resp => {
             this.totaux_by_type = resp;
+            let _preview_total: any;
             for(let type of this.totaux_by_type) {
               if(type.type == 1){
                 for(let month of this.array_month) {
+                  // if(month != "01" && type.totaux[month] == 0.0) {
+                  //   this.lineChartData[0].data.push(_preview_total);
+                  // } else {
+                  //   this.lineChartData[0].data.push(type.totaux[month]);
+                  //   _preview_total = type.totaux[month];
+                  // }
                   this.lineChartData[0].data.push(type.totaux[month]);
                 }
               }
             }
+            console.log(this.lineChartData);
           });
         }
       }
