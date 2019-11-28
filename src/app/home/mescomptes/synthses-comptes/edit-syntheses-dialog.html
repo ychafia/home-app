@@ -1,0 +1,23 @@
+<h2 mat-dialog-title class="text-center">Le solde de l'année -1 :</h2>
+<mat-dialog-content class="mat-typography">
+	<div class="row">
+		<div class="col-12">
+			<div class="form-group">
+				<label>Crédit total :</label>
+				<input numeric ncmericType="decimal" type="text" class="form-control" placeholder="Montant ..." name="montant" [(ngModel)]="data.montant_epargne">
+			</div>
+		</div>
+	</div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Débit total :</label>
+        <input numeric numericType="decimal" type="text" class="form-control" placeholder="Montant ..." name="montant" [(ngModel)]="data.montant_epargne">
+      </div>
+		</div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close *ngIf="!data.id_epargne" (click)="cancelDialog()">Annuler</button>
+  <button mat-button [mat-dialog-close]="data" *ngIf="!data.id_epargne" cdkFocusInitial>Ajouter</button>
+</mat-dialog-actions>

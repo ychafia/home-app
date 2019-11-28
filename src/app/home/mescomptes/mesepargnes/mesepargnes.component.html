@@ -7,14 +7,14 @@
 	<div class="row">
 		<div class="col-3">
 			<div class="form-group">
-				<label for="yearSelection">Année : </label>
+				<!-- <label for="yearSelection">Année : </label> -->
 				<select class="form-control" id="yearSelection" [(ngModel)]="selectedYear" (change)="changeDate()">
 					<option *ngFor="let year of years" [value]="year.value_year">{{year.value_year}}  </option>
 				</select>
 			</div>
 		</div>
 		<div class="col-3">
-				<a class="nav-link" routerLink="/mescomptes/mesepargnes/graphics-epargne">go to graphics</a>
+				<a class="nav-link" routerLink="/mescomptes/mesepargnes/graphics-epargne">Graphiques</a>
 		</div>
 	</div>
 	<div class="row text-center">

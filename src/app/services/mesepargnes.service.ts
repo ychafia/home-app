@@ -56,6 +56,13 @@ export class MesepargnesService {
     );
   }
 
+  public get_totaux_synthese() {
+    return this.http.get<any>(this.api_url + '/api/mes-epargnes-api/epargnes/totaux/').pipe(
+      tap(data => console.log('Tap: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

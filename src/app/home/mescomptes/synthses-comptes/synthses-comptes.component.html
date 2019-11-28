@@ -1,0 +1,108 @@
+<!-- <div class="container">
+	<div class="row">
+		<div class="col-12 text-center">
+			<h3>Synthèses</h3>
+		</div>
+	</div>
+	<br><br>
+	<div class="row">
+		<div class="col-2" style="padding: 6rem 0 0 0;">
+			2019
+		</div>
+		<div class="col-5">
+			<div class="card text-white bg-info mb-3 edit_pencil" style="width: 18rem;" (click)="edit_epargne(1)" >
+				<div class="card-header text-center">Epargne 2019 &nbsp;&nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></div>
+				<div class="card-body">
+					<h5 class="card-title">Crédit : 2700</h5>
+					<h5 class="card-title">Débit : 200</h5>
+				</div>
+				<div class="card-footer bg-transparent border-dark">Total : 2500</div>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="card text-white bg-info mb-3" style="width: 18rem;">
+				<div class="card-header text-center">Dépenses 2019</div>
+				<div class="card-body">
+					<h5 class="card-title">Crédit : 0</h5>
+					<h5 class="card-title">Débit : 0</h5>
+				</div>
+				<div class="card-footer bg-transparent border-dark">Total : 0</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2" style="padding: 6rem 0 0 0;">
+			2019
+		</div>
+		<div class="col-5">
+			<div class="card text-white bg-info mb-3" style="width: 18rem;">
+				<div class="card-header text-center">Epargne 2019</div>
+				<div class="card-body">
+					<h5 class="card-title">Crédit : 2700</h5>
+					<h5 class="card-title">Débit : 200</h5>
+				</div>
+				<div class="card-footer bg-transparent border-dark">Total : 2500</div>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="card text-white bg-info mb-3" style="width: 18rem;">
+				<div class="card-header text-center">Dépenses 2019</div>
+				<div class="card-body">
+					<h5 class="card-title">Crédit : 0</h5>
+					<h5 class="card-title">Débit : 0</h5>
+				</div>
+				<div class="card-footer bg-transparent border-dark">Total : 0</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2" style="padding: 6rem 0 0 0;">
+			2019
+		</div>
+		<div class="col-5">
+			<div class="card text-white bg-info mb-3" style="width: 18rem;">
+				<div class="card-header text-center">Epargne 2019</div>
+				<div class="card-body">
+					<h5 class="card-title">Crédit : 2700</h5>
+					<h5 class="card-title">Débit : 200</h5>
+				</div>
+				<div class="card-footer bg-transparent border-dark">Total : 2500</div>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="card text-white bg-info mb-3" style="width: 18rem;">
+				<div class="card-header text-center">Dépenses 2019</div>
+				<div class="card-body">
+					<h5 class="card-title">Crédit : 0</h5>
+					<h5 class="card-title">Débit : 0</h5>
+				</div>
+				<div class="card-footer bg-transparent border-dark">Total : 2500</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+<div class="container">
+	<div class="row">
+		<div class="col-12 text-center">
+			<h3>Solde au 1er Janvier :</h3>
+		</div>
+	</div>
+	<br><br>
+	<div class="row">
+		<div class="col-2" style="padding: 2rem 0 0 0; height: 5rem;">
+			Année
+		</div>
+		<div class="col-2" style="padding: 2rem 0 0 0; height: 5rem;" *ngFor="let type of types_epargnes">
+			{{type.value_type}}
+		</div>
+	</div>
+	<div class="row" *ngFor="let year of years">
+		<div class="col-2" style="padding: 2rem 0 0 0; height: 5rem;">
+			{{year.value_year}}
+		</div>
+		<div class="col-2" *ngFor="let total of totaux | year:year.value_year" style="padding: 2rem 0 0 0; height: 5rem;">
+			{{total.solde}}
+		</div>
+	</div>
+		
+</div>

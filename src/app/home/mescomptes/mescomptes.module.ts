@@ -11,6 +11,7 @@ import { FormatNumberSpacePipe } from 'src/app/pipes/format-number-space.pipe';
 import { TypeEpargneComponent } from './mesepargnes/type-epargne/type-epargne.component';
 import { NumericDirective } from 'src/app/directives/numeric.directive';
 import { GraphicsEpargnesComponent } from './mesepargnes/graphics-epargnes/graphics-epargnes.component';
+import { SynthsesComptesComponent } from './synthses-comptes/synthses-comptes.component';
 
 
 @NgModule({

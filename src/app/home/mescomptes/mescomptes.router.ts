@@ -29,6 +29,13 @@ export const MescomptesRoutes: Route[] = [
             )
         },
         {
+            path: 'syntheses',
+            loadChildren: () =>
+              import('./synthses-comptes/synthses-comptes.module').then(
+                m => m.SynthsesComptesModule
+            )
+        },
+        {
             path: 'mesdepenses',
             component: MesdepensesComponent
         }
