@@ -88,7 +88,7 @@
 		</div>
 	</div>
 	<br><br>
-	<div class="row">
+	<div class="row table-info text-center border border-secondary">
 		<div class="col-2" style="padding: 2rem 0 0 0; height: 5rem;">
 			Année
 		</div>
@@ -96,12 +96,15 @@
 			{{type.value_type}}
 		</div>
 	</div>
-	<div class="row" *ngFor="let year of years">
-		<div class="col-2" style="padding: 2rem 0 0 0; height: 5rem;">
+	<div class="row text-center" *ngFor="let year of years">
+		<div class="col-2 table-info border border-secondary" style="padding: 2rem 0 0 0; height: 5rem;">
 			{{year.value_year}}
 		</div>
-		<div class="col-2" *ngFor="let total of totaux | year:year.value_year" style="padding: 2rem 0 0 0; height: 5rem;">
-			{{total.solde}}
+		<div class="col-2" *ngFor="let total of totaux | year:year.value_year" style="padding: 2rem 0 0 0; height: 5rem;"> 
+			<!-- <input [(ngModel)]="total.solde" type="text" [disabled]="true" style="text-align: center; width: 7rem;"> -->
+			<span class="edit_pencil" (click)="edit_epargne(total)">
+				{{total.solde}} &nbsp;&nbsp; <i class="fa fa-pencil" aria-hidden="true"></i>
+			</span>
 		</div>
 	</div>
 		

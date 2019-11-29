@@ -63,6 +63,14 @@ export class MesepargnesService {
     );
   }
 
+  public updateTotaux(solde: any, year: any, id_type: any): Observable<any> {
+    let _total : any = {solde: solde, year: year, id_type: id_type}
+    return this.http.post<any>(this.api_url + '/api/mes-epargnes-api/epargnes/totaux/', _total).pipe(
+      tap(data => console.log('Tap: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

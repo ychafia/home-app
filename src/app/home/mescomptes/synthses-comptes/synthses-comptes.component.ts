@@ -14,15 +14,19 @@ export class SynthsesComptesComponent implements OnInit {
   totaux: any[] = [];
   constructor(private mesepargnesService: MesepargnesService, private dialog: MatDialog) { }
 
-  edit_epargne() {
-    console.log("editing ...");
+  edit_epargne(total: any) {
+    console.log("editing ...", total);
     const dialogRef = this.dialog.open(EditSynthesesDialog, {
       height: '300px',
       width: '400px',
-      data: {}
+      data: {total: total, new_solde: ''}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if(result) {
+        this.mesepargnesService.updateTotaux(result.new_solde, total.year, total.id_type).subscribe(resp => {
+          total.solde = result.new_solde;
+        });
+      }
     });
   }
 
