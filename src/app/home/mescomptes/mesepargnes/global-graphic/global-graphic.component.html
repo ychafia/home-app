@@ -1,5 +1,14 @@
 <div class="container">
 	<div class="row">
+		<div class="col-4">
+			<div class="form-group">
+				<select class="form-control" id="yearSelection" [(ngModel)]="selectedYear" (change)="changeDate()">
+					<option *ngFor="let year of years" [value]="year.value_year">{{year.value_year}}  </option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-12 text-center">
 			<h3>Totaux des épargnes</h3>
 		</div>
