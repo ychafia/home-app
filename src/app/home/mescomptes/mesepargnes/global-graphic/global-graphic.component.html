@@ -1,15 +1,22 @@
-<div>
-	<div >
-		<div class="flex-item">
-			<div style="display: block;">
-			<canvas baseChart width="400" height="200"
-							[datasets]="lineChartData"
-							[labels]="lineChartLabels"
-							[options]="lineChartOptions"
-							[colors]="lineChartColors"
-							[legend]="lineChartLegend"
-							[chartType]="lineChartType"
-							[plugins]="lineChartPlugins"></canvas>
+<div class="container">
+	<div class="row">
+		<div class="col-12 text-center">
+			<h3>Totaux des épargnes</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="flex-item">
+				<div style="display: block;">
+				<canvas baseChart width="400" height="200"
+								[datasets]="lineChartData"
+								[labels]="lineChartLabels"
+								[options]="lineChartOptions"
+								[colors]="lineChartColors"
+								[legend]="lineChartLegend"
+								[chartType]="lineChartType"
+								[plugins]="lineChartPlugins"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>

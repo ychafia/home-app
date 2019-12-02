@@ -84,7 +84,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 text-center">
-			<h3>Solde au 1er Janvier :</h3>
+			<h3>Soldes au 1er Janvier :</h3>
 		</div>
 	</div>
 	<br><br>
@@ -107,5 +107,14 @@
 			</span>
 		</div>
 	</div>
-		
 </div>
+<mat-sidenav-container>
+	<mat-sidenav #sidenav>
+		<p>side nav works</p>
+	</mat-sidenav>
+	<div class="example-container">
+		<button class="mine" mat-fab color="primary" (click)="addNewEpargne()">
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+</mat-sidenav-container>

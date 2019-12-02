@@ -20,7 +20,8 @@ export class GlobalGraphicComponent implements OnInit {
   //montant_by_month: any = [];
   sous_solde: any = {"01": "", "02": "", "03": "", "04": "", "05": "", "06": "", "07": "", "08": "", "09": "", "10": "", "11": "", "12": "", };
   public lineChartData: ChartDataSets[] = [
-    { data: [], label: '' }
+    { data: [], label: 'Totaux des épargnes' },
+    { data: [], label: 'Totaux des épargnes + Solde année précédente' }
   ];
   public lineChartLabels: Label[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Sptembre', 'Octobre', 'Novembre', 'Décembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -58,42 +59,46 @@ export class GlobalGraphicComponent implements OnInit {
   constructor(private mesepargnesService: MesepargnesService) { }
 
   ngOnInit() {
-    this.mesepargnesService.get_years().subscribe(resp => {
-      this.years = resp;
-      for(let year of this.years) {
-        if(year.active_year) {
-          this.selectedYear = year.value_year;
-          this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
-            this.mesepargnes = resp;
-          });
-          this.mesepargnesService.get_totaux_by_type(this.selectedYear).subscribe(resp => {
-            this.totaux_by_type = resp;
-            // console.log(this.totaux_by_type);
-            for(let month of this.array_month) {
-              let _solde = 0;
-              for(let type of this.totaux_by_type) {
-                //if(month == type.totaux[month]) {
-                  _solde += type.totaux[month];
-                //}
-                // console.log(type.totaux);
-              }
-              //this.sous_solde[month] = _solde
-              this.lineChartData[0].data.push(_solde);;
-            }
-            console.log(this.lineChartData[0].data);
-            // for(let type of this.totaux_by_type) {
-            //   if(type.type == 1){
-            //     for(let month of this.array_month) {
-            //       this.lineChartData[0].data.push(type.totaux[month]);
-            //     }
-            //   }
-            // }
-            // console.log(this.lineChartData);
-          });
-        }
+    let _date : Date = new Date();
+    this.mesepargnesService.get_totaux_synthese().subscribe( totaux => {
+      let _totaux_previous_year: number = 0;
+      for(let item of totaux) {
+        _totaux_previous_year += item[2];
       }
-      this.get_types_epargnes();
+      // _totaux_previous_year = Number(_totaux_previous_year.toFixed(2));
+      // console.log(_totaux_previous_year);
+      this.mesepargnesService.get_years().subscribe(resp => {
+        this.years = resp;
+        for(let year of this.years) {
+          if(year.active_year) {
+            this.selectedYear = year.value_year;
+            this.mesepargnesService.getEpargnes(this.selectedYear).subscribe(resp => {
+              this.mesepargnes = resp;
+            });
+            this.mesepargnesService.get_totaux_by_type(this.selectedYear).subscribe(resp => {
+              this.totaux_by_type = resp;
+              let _solde = 0;
+              let _solde_previous_year = _totaux_previous_year;
+              for(let month of this.array_month) {
+                if(Number(month) <= _date.getMonth() +1) { // Graphe : Limiter l'affichage jusqu'au mois actuel ( _date.get(month()+1) )
+                  for(let type of this.totaux_by_type) {
+                    _solde += type.totaux[month];
+                    _solde_previous_year += type.totaux[month];
+                  }
+                  this.lineChartData[0].data.push(_solde);
+                  this.lineChartData[1].data.push(_solde_previous_year);;
+                  this.lineChartData[1].label = 'Totaux des épargnes + Solde année précédente ('+_totaux_previous_year+' euros)';
+                }
+              }
+            });
+          }
+        }
+        this.get_types_epargnes();
+      });
+
+      console.log(totaux);
     });
+      
     
   }
 

@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Ajouter un solde au 1er Janvier :</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Type epargne : </label>
+        <select class="form-control" name="typeEp" [(ngModel)]="data.id_type">
+            <option *ngFor="let type of data.types" [value]="type.id_type">{{type.value_type}}</option>
+        </select>
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Année : </label>
+        <select class="form-control" name="yearEp" [(ngModel)]="data.value_year">
+            <option *ngFor="let year of data.years" [value]="year.value_year">{{year.value_year}}</option>
+        </select>
+        </div>
+    </div> 
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Montant epargne :</label>
+        <input numeric numericType="decimal" type="text" class="form-control" placeholder="Montant ..." name="montant" [(ngModel)]="data.montant_solde">
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <button mat-button mat-dialog-close *ngIf="!data.id_epargne" (click)="cancelDialog()">Annuler</button>
+  <button mat-button [mat-dialog-close]="data" *ngIf="!data.id_epargne" cdkFocusInitial>Ajouter</button>
+
+  <button mat-button [mat-dialog-close]="data" *ngIf="data.id_epargne" (click)="deleteEpargne(data.id_epargne)">Supprimer</button>
+  <button mat-button [mat-dialog-close]="data" *ngIf="data.id_epargne" cdkFocusInitial>Editer</button>
+
+</mat-dialog-actions>

@@ -30,17 +30,34 @@ export class SynthsesComptesComponent implements OnInit {
     });
   }
 
+  public addNewEpargne() {
+    const dialogRef = this.dialog.open(AddSynthesesDialog, {
+      height: '400px',
+      width: '600px',
+      data: {types: this.types_epargnes, years: this.years}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.mesepargnesService.addTotaux(result.montant_solde, result.value_year, result.id_type).subscribe(resp => {
+        console.log(resp);
+        if(resp) {
+          let obj = {year: resp.year, id_type: resp.total_type, solde: resp.montant};
+          this.totaux.push(obj);
+        }
+      });
+    });
+  }
+
   get_types_epargnes() {
     this.mesepargnesService.get_types_epargnes(this.selectedYear).subscribe(resp => {
       this.types_epargnes = resp;
-      console.log(this.types_epargnes);
     })
   }
 
   ngOnInit() {
     this.mesepargnesService.get_years().subscribe(resp => {
       this.years = resp;
-      console.log(this.years);
       for(let year of this.years) {
         if(year.active_year) {
           this.selectedYear = year.value_year;
@@ -57,7 +74,6 @@ export class SynthsesComptesComponent implements OnInit {
               }
               this.totaux.push(obj);
             }
-            console.log(this.totaux);
             this.get_types_epargnes();
           });
         }
@@ -79,6 +95,20 @@ export class EditSynthesesDialog {
     this.data.deleteEpargne = id;
     //this.dialogRef.close();
   }
+
+  cancelDialog(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'add-synthese-dialog',
+  templateUrl: 'add-synthese-dialog.html',
+})
+export class AddSynthesesDialog {
+  constructor(
+    public dialogRef: MatDialogRef<AddSynthesesDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   cancelDialog(): void {
     this.dialogRef.close();
