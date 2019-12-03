@@ -184,6 +184,46 @@ export class MesepargnesComponent implements OnInit {
     return picker_date;
   }
 
+  sort_by_date(type) {
+    console.log("sort me", this.mesepargnes);
+    console.log(type);
+    let _epargne_to_sort: any = []
+    for(let ep of this.mesepargnes) {
+      if(ep.type == type) {
+        _epargne_to_sort = ep.epargnes;
+      }
+    }
+    console.log(_epargne_to_sort);
+    _epargne_to_sort.sort( this.compare );
+    console.log(_epargne_to_sort);
+  }
+
+  compare(e1: any, e2: any ) {
+    let _dd: any; let _mm: any; let _yyyy: any; let e11: Date;
+    let parts = e1.date_epargne.split("/");
+    _dd = parseInt(parts[0]);
+    _mm = parseInt(parts[1]);
+    _yyyy = parseInt(parts[2]);
+    
+    e11 = new Date(_mm + "/" + _dd + "/" + _yyyy)
+
+    let _dd2: any; let _mm2: any; let _yyyy2: any; let e22: Date;
+    let parts2 = e2.date_epargne.split("/");
+    _dd2 = parseInt(parts2[0]);
+    _mm2 = parseInt(parts2[1]);
+    _yyyy2 = parseInt(parts2[2]);
+    
+    e22 = new Date(_mm2 + "/" + _dd2 + "/" + _yyyy2)
+    
+    if ( e11.getTime() < e22.getTime() ){
+      return -1;
+    }
+    if ( e11.getTime() > e22.getTime() ){
+      return 1;
+    }
+    return 0;
+  }
+
   ngOnInit() {
     this.mesepargnesService.get_years().subscribe(resp => {
       this.years = resp;
