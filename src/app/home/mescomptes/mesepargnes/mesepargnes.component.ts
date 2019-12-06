@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Epargne } from 'src/app/models/epargne';
 import { MesepargnesService } from 'src/app/services/mesepargnes.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, DateAdapter } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +20,8 @@ export class MesepargnesComponent implements OnInit {
   years: any;
   types_epargnes: any;
 
-  constructor(private mesepargnesService: MesepargnesService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private mesepargnesService: MesepargnesService, private dialog: MatDialog, 
+              private _snackBar: MatSnackBar, private router: Router, private _adapter: DateAdapter<any>) { }
 
   public addNewEpargne() {
     const dialogRef = this.dialog.open(AddTypeEpargneDialog, {
@@ -225,6 +226,7 @@ export class MesepargnesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._adapter.setLocale('fr');
     this.mesepargnesService.get_years().subscribe(resp => {
       this.years = resp;
       for(let year of this.years) {
