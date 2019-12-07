@@ -12,3 +12,7 @@
 .td-edit-epargne :hover {
     cursor: pointer;
 }
+
+.sort_date :hover{
+    cursor: pointer;
+}
