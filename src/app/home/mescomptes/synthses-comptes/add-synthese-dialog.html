@@ -34,7 +34,4 @@
   <button mat-button mat-dialog-close *ngIf="!data.id_epargne" (click)="cancelDialog()">Annuler</button>
   <button mat-button [mat-dialog-close]="data" *ngIf="!data.id_epargne" cdkFocusInitial>Ajouter</button>
 
-  <button mat-button [mat-dialog-close]="data" *ngIf="data.id_epargne" (click)="deleteEpargne(data.id_epargne)">Supprimer</button>
-  <button mat-button [mat-dialog-close]="data" *ngIf="data.id_epargne" cdkFocusInitial>Editer</button>
-
 </mat-dialog-actions>
