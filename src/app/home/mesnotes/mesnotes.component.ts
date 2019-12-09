@@ -11,11 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MesnotesComponent implements OnInit {
   notes: Note[] = [];
+  description_note: string = "";
   constructor(private notesService: NotesService, private _snackBar: MatSnackBar, private router: Router) { }
 
   getNotes() : void {
     this.notesService.getNotes().subscribe(data => {
       this.notes = data;
+      for(let note of this.notes) {
+        note.description_note = note.description_note.replace(new RegExp('\n', 'g'), "<br>")
+      }
     });
   }
 
