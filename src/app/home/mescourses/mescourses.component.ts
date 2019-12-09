@@ -15,7 +15,7 @@ export class MescoursesComponent implements OnInit {
   elements : Element[];
   newElement : Element = new Element();
 
-  checkedZones : boolean[] = [true, true, true, true];
+  checkedZones : boolean[] = [false, false, false, false];
 
   constructor(private elementService: ElementService) {}
 
@@ -73,7 +73,15 @@ export class MescoursesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.elementService.getElement().subscribe(elem => this.elements = elem);
+    this.elementService.getElement().subscribe(elem => {
+      this.elements = elem
+      for(let el of elem) {
+        if(el.zone == 1) { this.checkedZones[0] = true; }
+        if(el.zone == 2) { this.checkedZones[1] = true; }
+        if(el.zone == 3) { this.checkedZones[2] = true; }
+        if(el.zone == 4) { this.checkedZones[3] = true; }
+      }
+    });
     this.newElement.zone = 1;
   }
 
