@@ -27,7 +27,7 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     HomeModule,
     IndexModule,
-    RouterModule.forRoot(routes, { useHash: false }),
+    RouterModule.forRoot(routes, { useHash: false }), //preloadingStrategy: PreloadAllModules
     BrowserAnimationsModule,
     ChartsModule
   ],
