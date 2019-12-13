@@ -1,38 +1,46 @@
+<!-- <div class="column logindiv">
+	<h3>Bienvenue</h3>
+	<div class="field">
+			<label class="sr-only" for="inlineFormInputGroupUsername1">Identifiant</label>
+			<div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+							<div class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+					</div>
+					<input type="text" class="form-control" id="inlineFormInputGroupUsername1" placeholder="Identifiant" [(ngModel)]="postData.username" autofocus>
+			</div>
+	</div>
+	<div class="field">
+			<label class="sr-only" for="inlineFormInputGroupUsername2">Password</label>
+			<div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+							<div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+					</div>
+					<input class="form-control" type="password" id="inlineFormInputGroupUsername2" placeholder="Password" [(ngModel)]="postData.password">
+			</div>
+	</div>
+	<div class="field">
+			<div class="control">
+					<span class='has-text-danger'>{{errorText}}</span>
+			</div>
+	</div>
+	<div class="field">
+			<div class="control">
+					<a routerLink="/forgot" >Mot de passe oublié ?</a>
+			</div>
+	</div>
+	<a id="loginBtn" class="button is-primary" (click)="loginAction()">Login</a>
+</div> -->
+
 <div class="column logindiv">
-    <h3>Bienvenue</h3>
-    <div class="field">
-        <!-- <div class="control">
-            <input class="input " type="text" placeholder="Identifiant" [(ngModel)]="postData.username">
-        </div> -->
-        <label class="sr-only" for="inlineFormInputGroupUsername1">Identifiant</label>
-        <div class="input-group mb-2 mr-sm-2">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
-            </div>
-            <input type="text" class="form-control" id="inlineFormInputGroupUsername1" placeholder="Identifiant" [(ngModel)]="postData.username">
-        </div>
-    </div>
-    <div class="field">
-        <!-- <div class="control">
-            <input class="input" type="password" placeholder="Password" [(ngModel)]="postData.password">
-        </div> -->
-        <label class="sr-only" for="inlineFormInputGroupUsername2">Password</label>
-        <div class="input-group mb-2 mr-sm-2">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
-            </div>
-            <input class="form-control" type="password" id="inlineFormInputGroupUsername2" placeholder="Password" [(ngModel)]="postData.password">
-        </div>
-    </div>
-    <div class="field">
-        <div class="control">
-            <span class='has-text-danger'>{{errorText}}</span>
-        </div>
-    </div>
-    <div class="field">
-        <div class="control">
-            <a routerLink="/forgot" >Mot de passe oublié ?</a>
-        </div>
-    </div>
-    <a id="loginBtn" class="button is-primary" (click)="loginAction()">Login</a>
+	<h3>Bienvenue</h3>
+	<div class="field">
+			<label class="sr-only" for="inlineFormInputGroupUsername1">Identifiant</label>
+			<div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+							<div class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+					</div>
+					<input type="text" class="form-control" id="inlineFormInputGroupUsername1" placeholder="Identifiant" [(ngModel)]="postData.username" autofocus>
+			</div>
+	</div>
+	<a id="loginBtn" class="button is-primary" (click)="loginAction()">Login</a>
 </div>
