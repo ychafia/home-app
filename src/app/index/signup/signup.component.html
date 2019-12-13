@@ -1,28 +1,44 @@
-<div class="column is-half">
-    <h1>Sign up</h1>
+<div class="column logindiv">
+    <h3>S'enregistrer</h3>
     <div class="field">
-        <div class="control">
+        <!-- <div class="control">
             <input class="input " type="text" placeholder="Identifiant" [(ngModel)]="postData.username">
+        </div> -->
+        <label class="sr-only" for="inlineFormInputGroupUsername1">Identifiant</label>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroupUsername1" placeholder="Identifiant" [(ngModel)]="postData.username">
         </div>
     </div>
     <div class="field">
-        <div class="control">
+        <!-- <div class="control">
             <input class="input" type="password" placeholder="Password" [(ngModel)]="postData.password">
+        </div> -->
+        <label class="sr-only" for="inlineFormInputGroupUsername2">Password</label>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+            </div>
+            <input class="form-control" type="password" id="inlineFormInputGroupUsername2" placeholder="Password" [(ngModel)]="postData.password">
         </div>
     </div>
     <div class="field">
-        <div class="control">
+        <!-- <div class="control">
             <input class="input" type="password" placeholder="Confirme password" [(ngModel)]="postData.password2">
+        </div> -->
+        <label class="sr-only" for="inlineFormInputGroupUsername3">Password</label>
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+            </div>
+            <input class="form-control" type="password" id="inlineFormInputGroupUsername3" placeholder="Password" [(ngModel)]="postData.password2">
         </div>
     </div>
     <div class="field">
         <div class="control">
             <span class='has-text-danger'>{{errorText}}</span>
-        </div>
-    </div>
-    <div class="field">
-        <div class="control">
-        <a href="/forgot" >Forgot password?</a>
         </div>
     </div>
     <a class="button is-primary"  (click)="registerAction()">Sign up</a>

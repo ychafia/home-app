@@ -58,3 +58,16 @@
   }   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mybody {
+  background-color: #ecf0f1;
+}
+
+ /* Ovveride this */
+.mat-drawer-content {
+  background-color: #ecf0f1;
+}
+
+.nav-home-app {
+  border-radius: 6%;
+}
