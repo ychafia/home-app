@@ -5,3 +5,9 @@
     border-radius: 6px;
     box-shadow: 12px 12px 6px 1px rgba(87, 87, 87, 0.2);
 }
+
+.img-login {
+    border-radius: 50%;
+    max-height: 100px;
+    margin-bottom: 10px;
+}

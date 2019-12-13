@@ -23,12 +23,12 @@ import { ChartsModule } from 'ng2-charts';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     // AppRoutingModule, //l'ordre est important, il faudra l'utiliser à la fin des imports
     HttpClientModule,
     HomeModule,
     IndexModule,
     RouterModule.forRoot(routes, { useHash: false }), //preloadingStrategy: PreloadAllModules
-    BrowserAnimationsModule,
     ChartsModule
   ],
   // Comme les services (AuthService, AuthGuard, ElementService) sont injectés en tant que providedIn:'root',

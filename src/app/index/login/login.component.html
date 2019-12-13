@@ -31,7 +31,7 @@
 	<a id="loginBtn" class="button is-primary" (click)="loginAction()">Login</a>
 </div> -->
 
-<div class="column logindiv">
+<div *ngIf="!showMe" class="column logindiv">
 	<h3>Bienvenue</h3>
 	<div class="field">
 			<label class="sr-only" for="inlineFormInputGroupUsername1">Identifiant</label>
@@ -41,6 +41,24 @@
 					</div>
 					<input type="text" class="form-control" id="inlineFormInputGroupUsername1" placeholder="Identifiant" [(ngModel)]="postData.username" autofocus>
 			</div>
+	</div>
+	
+	
+	<a id="loginBtn" class="button is-primary" (click)="open()">Open</a>
+</div>
+
+<div  *ngIf="showMe" @changeSize class="column logindiv">
+	<h3>Bienvenue</h3>
+	<img *ngIf="postData.username == 'sandra' " class="img-login" src="assets/images/img_avatar2.png" alt="Avatar">
+	<img *ngIf="postData.username == 'youness'" class="img-login" src="assets/images/img_avatar.png" alt="Avatar">
+	<div class="field">
+		<label class="sr-only" for="inlineFormInputGroupUsername2">Password</label>
+		<div class="input-group mb-2 mr-sm-2">
+				<div class="input-group-prepend">
+						<div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+				</div>
+				<input class="form-control" type="password" id="inlineFormInputGroupUsername2" placeholder="Password" [(ngModel)]="postData.password">
+		</div>
 	</div>
 	<a id="loginBtn" class="button is-primary" (click)="loginAction()">Login</a>
 </div>
