@@ -21,7 +21,11 @@
     margin: 1rem 0 2rem 0;
 }
 
-.card-note {
+.card-body-note {
     max-height: 200px;
     overflow:auto;
+}
+
+.card-note {
+    box-shadow: 12px 12px 20px 1px rgba(87, 87, 87, 0.2);
 }

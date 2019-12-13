@@ -25,11 +25,11 @@
 
 <div class="row note" *ngFor="let note of notes">
   <div class="col-sm-12">
-    <div class="card">
+    <div class="card card-note">
       <div class="card-header">
           <h5 class="card-title">{{ note.title_note }}</h5>
       </div>
-      <div class="card-body card-note">
+      <div class="card-body card-body-note">
         <p class="card-text" [innerHTML]="note.description_note"></p>
       </div>
       <div class="card-footer text-muted">
