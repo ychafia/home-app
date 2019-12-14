@@ -3,13 +3,26 @@ import { Element } from './../../models/element';
 import { ElementService } from './../../services/element.service';
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { trigger, state, style, animate, transition, group } from '@angular/animations';
 
 
 @Component({
   selector: 'app-mescourses',
   templateUrl: './mescourses.component.html',
-  styleUrls: ['./mescourses.component.css']
+  styleUrls: ['./mescourses.component.css'],
   //changeDetection: ChangeDetectionStrategy.OnPush
+  animations: [
+    trigger('slide-app', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        style({ transform: 'translateX(-100%)' }),
+        animate(300)
+      ]),
+      transition('* => void', [
+        animate(300, style({ transform: 'translateX(100%)' }))
+      ])
+    ])
+  ]
 })
 export class MescoursesComponent implements OnInit {
   elements : Element[];

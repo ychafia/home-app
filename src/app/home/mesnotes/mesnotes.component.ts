@@ -3,11 +3,24 @@ import { MatSnackBar } from '@angular/material';
 import { Note } from './../../models/note';
 import { NotesService } from './../../services/notes.service';
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition, group } from '@angular/animations';
 
 @Component({
   selector: 'app-mesnotes',
   templateUrl: './mesnotes.component.html',
-  styleUrls: ['./mesnotes.component.css']
+  styleUrls: ['./mesnotes.component.css'],
+  animations: [
+    trigger('slide-app', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        style({ transform: 'translateX(-100%)' }),
+        animate(300)
+      ]),
+      transition('* => void', [
+        animate(300, style({ transform: 'translateX(100%)' }))
+      ])
+    ])
+  ]
 })
 export class MesnotesComponent implements OnInit {
   notes: Note[] = [];

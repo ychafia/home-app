@@ -60,7 +60,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mybody {
-  background-color: #ecf0f1;
+  background-color: #f8f9fa;
 }
 
  /* Ovveride this */

@@ -8,16 +8,16 @@ import { trigger, state, style, animate, transition, group } from '@angular/anim
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   animations: [
-    trigger('changeSize', [
-       transition(':enter', [
-         style({ height: '0px', overflow: 'hidden' }),
-         group([animate('250ms ease-out', style({ height: '!' }))]),
-       ]),
-       transition(':leave', [
-         style({ height: '!', overflow: 'hidden' }),
-         group([animate('250ms ease-out', style({ height: '0px' }))]),
-       ]),
-     ]),
+    trigger('slide-app', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        style({ transform: 'translateX(-100%)' }),
+        animate(100)
+      ]),
+      transition('* => void', [
+        animate(100, style({ transform: 'translateX(100%)' }))
+      ])
+    ])
   ]
 })
 export class LoginComponent implements OnInit {
@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        if(error && error.status == 401) {
+        if(error && error.status == 500) {
+          this.errorText = "login/password incorrect !";
+        } else if (error && error.status == 401) {
           this.errorText = "login/password incorrect !";
         }
         console.log(error);
